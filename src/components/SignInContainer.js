@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import { logInAction, signUp } from '../actions/authActions';
 
 import {InputField, PrimaryButton} from './common/index.js';
@@ -10,6 +11,9 @@ class SignInContainer extends Component {
     email:'example@example.com',
     password:'password',
     loginState: true 
+  }
+  componentWillMount() {
+    console.log(moment().year())
   }
   passwordChange(event) {
       console.log(event.target.value)
@@ -85,7 +89,7 @@ class SignInContainer extends Component {
             <InputField onChange={this.emailChange.bind(this)} value={this.state.email} label="Email" placeholder="email"/>
             <InputField onChange={this.passwordChange.bind(this)} value={this.state.password} label="Password" placeholder="password"/>
           </div>
-          <PrimaryButton label={"Login"}/> 
+          <PrimaryButton label={"Login"} width={"w-full"}/> 
         </form>
         )} else if(state === false) {
         // Signup form
@@ -101,7 +105,7 @@ class SignInContainer extends Component {
             <InputField onChange={this.emailChange.bind(this)} value={this.state.email} label="Email" placeholder="email"/>
             <InputField onChange={this.passwordChange.bind(this)} value={this.state.password} label="Password" placeholder="password"/>
           </div>
-          <PrimaryButton label={"Signup"}/> 
+          <PrimaryButton label={"Signup"} width={"w-full"}/> 
           </form>
           )
       }

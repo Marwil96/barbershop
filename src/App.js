@@ -8,22 +8,29 @@ import SignInContainer from './components/SignInContainer';
 import Dashboard from './components/Dashboard';
 import Sidebar from './components/Sidebar';
 import ScheduleContainer from './components/ScheduleContainer';
+import WorkspaceContainer from './components/WorkspaceContainer';
+import TeamSettings from './components/TeamSettings';
 
 class App extends Component {
   simpleAction = (event) => {
  this.props.simpleAction();
 }
   render() {
+  	console.log("user")
     return (
       <div className="container font-sans">
         <Switch>
 	      <Route exact path='/' component={SignInContainer}/>
-	      <div>
-	      <Sidebar/>
+	      <div className="w-full bg-white">
+	      <Sidebar />
+	      <div className="ml-64">
 	      <Switch>
-	      	<Route path="/Dashboard" component={Dashboard}/>
-	      	<Route path="/Schedule" component={ScheduleContainer}/>
+	      	<Route path={"/" + this.props.user + "/Dashboard"} component={Dashboard}/>
+	      	<Route path={"/" + this.props.user + "/workspace"} component={WorkspaceContainer}/>
+	      	<Route path={"/" + this.props.user + "/schedule"} component={ScheduleContainer}/>
+          <Route path={"/" + this.props.user + "/teamSettings"} component={TeamSettings}/>
 	      </Switch>
+	      </div>
 	      </div>
     	</Switch>
       </div>
@@ -32,13 +39,10 @@ class App extends Component {
 }
 
 
-const mapDispatchToProps = dispatch => ({
- simpleAction: () => dispatch(simpleAction())
-})
+const mapStateToProps = ({ auth }) => {
+  const { user } = auth;
 
-const mapStateToProps = state => ({
- ...state
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+  return { user };
+};
+export default connect(mapStateToProps, {})(App);
 

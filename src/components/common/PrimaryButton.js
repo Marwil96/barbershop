@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-const PrimaryButton = ({label}) => {
+const PrimaryButton = ({label, width, onClick}) => {
     return (
-     <button className="bg-orange-dark rounded w-full h-12 font-sans font-bold text-xl text-white"> {label} </button>
+     <button onClick={onClick} className={"bg-orange-dark rounded py-3 px-3 font-sans font-bold text-xl text-white " + width}> {label} </button>
     );
   }
 

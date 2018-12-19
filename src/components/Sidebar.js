@@ -11,16 +11,17 @@ class Sidebar extends Component {
   }
   render() {
     return (
-      <div className="h-screen w-64 absolute flex flex-col items-center bg-indigo-lightest border-r">
-        <Link to="/dashboard" className="w-full pl-4 pt-6 flex items-center">
+      <div className="h-screen w-64 fixed flex flex-col items-center bg-white shadow">
+        <Link to={"/" +this.props.user+ "/dashboard"} className="w-full pl-4 pt-6 flex items-center">
           <div className="w-10 h-10 bg-blue flex items-center justify-center" style={{borderRadius:'100%'}}>
            <span className="text-base font-bold text-white uppercase">WM</span>
           </div>
           <span className="text-xl ml-2">Dandysklipperi</span>
         </Link>
         <div className="flex flex-col w-full pl-4 pt-6"> 
-          <span className="py-4"> Customize bookingform </span>
-          <Link to="/schedule" className="py-4"> Time management </Link>
+          <Link to={"/" + this.props.user + "/workspace"} className="py-4"> Workspace </Link>
+          <Link to={"/" + this.props.user + "/schedule"} className="py-4"> Time management </Link>
+          <Link to={"/" + this.props.user + "/teamSettings"} className="py-4"> Team settings </Link>
           <span className="py-4"> Options </span>    
         </div>
       </div>
@@ -37,9 +38,9 @@ class Sidebar extends Component {
 // })
 
 const mapStateToProps = ({ auth }) => {
-  const { loading, fullName } = auth;
+  const { loading, fullName, user } = auth;
 
-  return { loading, fullName };
+  return { loading, fullName, user };
 };
 export default connect(mapStateToProps, {})(Sidebar);
 
