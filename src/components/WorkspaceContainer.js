@@ -5,6 +5,7 @@ import { CirclePicker } from 'react-color';
 
 import { saveEmployee, fetchEmployees } from '../actions/authActions';
 import construction from '../img/construction.svg'
+import { Link } from "react-router-dom";
 
 import { InputField, PrimaryButton, TemplateBox, FontVariableButton, EmployeeBox, ModalContainer } from './common/index.js';
 
@@ -99,7 +100,7 @@ class WorkspaceContainer extends Component {
             <FontVariableButton label={"Roboto Mono"} font={"font-mono"} onClick={this.fontHandleChange.bind(this)} />
           </div> 
          </div>
-         <div className="mt-4"> <PrimaryButton label={"Continue"} onClick={() => { this.changeFormState(3)}} width={"w-32"}/> </div>
+         <div className="mt-4"> <Link to="/Barbershop/bookingForm"> <PrimaryButton label={"Continue"} onClick={() => { this.changeFormState(3)}} width={"w-32"}/></Link> </div>
         </div>
       </div>
     );
@@ -170,9 +171,9 @@ class WorkspaceContainer extends Component {
 // })
 
 const mapStateToProps = ({ auth }) => {
-  const { loading, user, employeesData } = auth;
+  const { loading, user, employeesData, team } = auth;
 
-  return { loading, user, employeesData };
+  return { loading, user, employeesData, team };
 };
 export default connect(mapStateToProps, {saveEmployee, fetchEmployees})(WorkspaceContainer);
 

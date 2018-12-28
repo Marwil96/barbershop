@@ -73,7 +73,7 @@ const signupUserSuccess = (dispatch, user, fullName, teamName) => {
 		dispatch(push('/'+ user.user.uid +'/Dashboard'))
 		dispatch({
 			type: 'SIGNUP_USER_SUCCESS',
-			payload: {user:user, fullName:fullName}
+			payload: {user:user, fullName:fullName, teamName:teamName}
 		});	
 		console.log("SKREV IN I ANVÄNDAREN")
 	}).catch(function(error) {

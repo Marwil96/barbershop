@@ -1,5 +1,5 @@
 
-const INITIAL_STATE = { credentials:{email:""}, loading:false, fullName:'', user:"", employeeData:[{}]};
+const INITIAL_STATE = { credentials:{email:""}, loading:false, fullName:'', user:"", team:"", employeeData:[{}]};
 
 export default (state = {}, action) => {
  switch (action.type) {
@@ -17,15 +17,18 @@ export default (state = {}, action) => {
    	loading:false
    }
    case 'LOGIN_USER_SUCCESS':
+   console.log(action.payload)
    return {
    	loading:false,
    	fullName:action.payload.fullName,
-   	user: action.payload.user.user.uid
+   	user: action.payload.user.user.uid,
+    team: action.payload.teamName
    }
    case 'SIGNUP_USER_SUCCESS':
    return {
    	loading:false,
-   	fullName:action.payload.fullName
+   	fullName:action.payload.fullName,
+    team: action.payload.teamName
    }
    case 'SAVING_EMPLOYEE':
    return {
